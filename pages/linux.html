@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<title>
+Blacktutorials
+</title>
+
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+</style>
+
+
+
+
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1">Logo</a>
+
+    <a href="../index.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Home</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
+    <!--
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Values</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">News</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Clients</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Blog</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Partners</a>
+    -->
+  </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-top" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  <h4 class="w3-bar-item"><b>Menu</b></h4>
+  <a class="w3-bar-item w3-button w3-hover-black" href="../index.html">Home</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#1_linux">Network File System</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#2_linux">Initial setup and NTP</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#3_linux">LDAP</a>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main" style="margin-left:250px">
+
+  <div id="1_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Network file system</h1>
+      <p>
+
+        <br>
+        <code>
+          NFS : Network file system<br>
+          <br>
+          #yum install nfs*<br>
+          #yum install nfs*<br>
+          #mkdir /myshare<br>
+          #ls -ld /myshare<br>
+          #chmod 757 /myshare/<br>
+          #vim /etc/exports<br>
+            //In vim   /myshare *(rw,sync)<br>
+          #systemctl enable nfs-server.service<br>
+          #systemctl restart  nfs-server.service<br>
+          <br>
+          #showmount -e 172.25.254.38<br>
+          Export list for 172.25.254.38:<br>
+          /myshare *<br>
+          <br>
+          Now Go to the client machine<br>
+          ping 172.25.1.11<br>
+          ping -c3 172.25.1.11  //pinging 3 times<br>
+          showmount -e 172.25.1.11<br>
+          <br>
+          <br>
+          <br>
+          Usinng showmount command show which folders are shared.<br>
+          mount 172.25.1.11:/myshare /mnt <br>
+        </code>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+  <div id="2_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Initial setup and NTP</h1>
+      <p>
+          <code>
+            Initial setup while writing the exam:<br>
+            // To lock the password<br>
+            passwd -l root<br>
+            systemctl set-default multi-user.target<br>
+            poweroff<br>
+            <br>
+            What we have to do?<br>
+            1) Break the root  password and set the password as in the question paper.<br>
+                Click the VM machine. Send key > ctrl+alt+del<br>
+                press escape key and then 'e'.<br>
+                Go to line 'linux16' press end key 'rd.break console=tty1'.<br>
+                'ctrl+x' to start.<br>
+                <br>
+                switch_root:/#chroot<br>
+            mount -o remount,rw /sysroot<br>
+            chroot /sysroot/<br>
+            passwd<br>
+            //Question paper password as 'serverx'.<br>
+            <br>
+            <br>
+            #touch /.autorelabel<br>
+            #exit<br>
+            #exit<br>
+            2}Change to graphical mode<br>
+            root<br>
+            serverx<br>
+            <br>
+            #systemctl set-default graphical.target<br>
+            #reboot<br>
+            3)Manual IP setting and computer name.<br>
+            #nmcli connection show<br>
+            Which name is displayed that is modified.<br>
+            #nmcli connection modify "Sys tab key" tab tab ipv4.add tab "172.25.0.11/24 172.25.254.254" ipv4.dn tab "nameserver address" ipv4.dns-se tab "example.com" ipv4.method manual<br>
+            #nmcli connection up tab "Sys tab"<br>
+            <br>
+            Computer name is host name.<br>
+            #hostnamectl set-host tab serverx.example.com<br>
+            #hostname<br>
+            #ifconfig<br>
+            <br>
+            3 Slogan:<br>
+            SElinux should be enforcing.<br>
+            #vim /etc/selinux/config<br>
+            #reboot // there is no service related command.<br>
+            #Now ssh login from the base machine.<br>
+            #ssh -X root@172.25.0.11 // password is 'serverx'<br>
+            After login disable firewall.<br>
+            #systemctl disable firewalld.service  // It will stop after rebooting.<br>
+            #systemctl status firewalld.service<br>
+            #systemctl start firewalld.service<br>
+            <br>
+            <br>
+            4) Configure yum client //repository<br>
+            copy the yum path from the question paper.<br>
+            In the server machine<br>
+            #mv /etc/yum. tab /*  /tmp/<br>
+            #vim /etc/yum.tab/any.repo<br>
+            press i<br>
+            <br>
+            [p]<br>
+            name=p<br>
+            baseurl=http://   /content/rhel  /dvd<br>
+            enabled=1<br>
+            gpgcheck=0  // gnu private guard check , generally not unix.<br>
+            Initial setup finish<br>
+            #yum clean all<br>
+            #yum repolist<br>
+            Network time protocol NTP :<br>
+            crony<br>
+            yum install chronyd<br>
+            Chronyd service:  Service to join network time.<br>
+            vim /etc/chrony.conf<br>
+            Disable all the lines by removing the #.<br>
+            server classroom.example.com iburst<br>
+            #systemctl restart chronyd.service<br>
+            #systemctl enable chronyd.service<br>
+            <br>
+            <br>
+            find / -user sandy<br>
+            <br>
+            <br>
+            To increase lv size<br>
+            #lvextend -l 50 /dev/datastore/database<br>
+            #resize2fs /dev/datastore/databse<br>
+            #reboot<br>
+
+            rht-pushcourse 17 <br>
+            </code>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+  <div id="3_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">LDAP</h1>
+      <p>
+        <code>
+        <br />
+        touch <br />
+        gzip file<br />
+        bzip file <br />
+        xz file <br />
+        gconzip file.gz<br />
+        unxz file.xz<br />
+        <br />
+        <br />
+        tar -cvf my.tar file dir/ hello/<br />
+        mkdir mydir <br />
+        tar -cvf mydir.tar mydir/<br />
+        gzip mydir.tar.gz<br />
+        gunzip mydir.tar.gz<br />
+        <br />
+        tar -xvf&nbsp; dir.tar<br />
+        gzip dir.tar<br />
+        unzip dir.tar.gz<br />
+        tar -xvf dir.tar<br />
+        <br />
+        Doing tar and gzip in one line: <br />
+        tar -czvf dir.tar.gz dir <br />
+        for extraction <br />
+        tar -xzvf dir.tar.gz<br />
+        <br />
+        tar -cjvf dir.tar.bz2 dir <br />
+        tar -xjvf dir.tar.bz2<br />
+        <br />
+        <br />
+        LDAP : <br />
+        <br />
+        Ldap server name is : classroom.example.com <br />
+        <br />
+        Ldap user authentication-<br />
+        In this location lot of users are ther from 0 to 20. <br />
+        Light weight directory access protocol.<br />
+        <br />
+        Your home directory is available at classroom.example.com:/home/guests <br />
+        <br />
+        Authenticating Ldap user : 80 marks<br />
+        <br />
+        yum install authconfig-gtk autofs sssd <br />
+        <br />
+        sssd : system securuty service deamon <br />
+        Authentication and authorization <br />
+        password field is authentication. <br />
+        <br />
+        #usermod -s /sbin/nologin rakesh <br />
+        <br />
+        If there is nologin permission, it's not authorized. <br />
+        <br />
+        #autoconfig-tui<br />
+        <br />
+        Ldap users is available in the location: <br />
+        /home/guests/ldapuser0<br />
+        Mark with the astric containing Ldap. <br />
+        Next Ldap settings <br />
+        Use Tls : transport layer security <br />
+        <br />
+        server : classroom.example.com <br />
+        DN : Distinguishing name : dc=example,dc=com<br />
+        warning message is displayed <br />
+        authority certificate <br />
+        authconfig-gtk //just enter <br />
+        download CA certificatio and provide certificate url path. <br />
+        <br />
+        http://classroom.example.com/pub/example-ca.crt<br />
+        apply <br />
+        su - ldapuse0<br />
+        systemctl restart sssd<br />
+        systemctl enable sssd<br />
+        Now bash will come <br />
+        //output<br />
+        cannot change directory /home/guests<br />
+        <br />
+        Auto mounting the home directory <br />
+        vim /etc/auto.master <br />
+        <br />
+        press i <br />
+        +auto.master <br />
+        /home/guests&nbsp; /etc/auto.misc<br />
+        <br />
+        vim /etc/auto.misc<br />
+        shift + g <br />
+        ldapuser0 -rw,soft,intr classroom.example.com:/home/guests/ldapuser0<br />
+        <br />
+        What is soft and hard mount ?<br />
+        Soft mount checks every 5 minutes,the server. 'Intr' means interrupt. <br />
+        While the hard mount have to do it manually everytime.<br />
+        <br />
+        systemctl restart autofs <br />
+        systemctl enable autofs<br />
+        <br />
+        <br />
+        then output will be like : <br />
+        <br />
+        ldapuser0@server0~]$<br />
+        <br />
+        <br />
+        In windows there is <br />
+        IIS : Internet information service <br />
+        In linux It's called <br />
+        Apache web service <br />
+        To configure it <br />
+        We have to install <br />
+        #yum install httpd <br />
+        After installing www folder is generated inside var.<br />
+        In web server the default document root is: <br />
+        /var/www/html<br />
+        <br />
+        vim /var/www/html/first.html<br />
+        <br />
+        <br />
+        // this is default page .welcome .<br />
+        systemctl restart httpd <br />
+        systemctl enable httpd <br />
+        <br />
+        Open browser and if unable to view the first page but the test page. <br />
+        Apache can not understanding anything other than 'index.html'.<br />
+        So, we rename the file using mv <br />
+        #mv /var/www/html/firstpage.html /var/www/index.html<br />
+        After renaming it will work fine.<br />
+        Configuration file. <br />
+        vim /etc/httpd/conf/httpd/comf<br />
+        This is the configuration file.<br />
+        <br />
+        shift + g and press o to go to the last line and enter. <br />
+        &lt;VirtualHost 172.25.0.11:80&gt;<br />
+        ServerName server0.example.com<br />
+        DocumentRoot /var/www/html<br />
+        &lt;/VirtualHost&gt;<br />
+        :wq<br />
+        <br />
+        systemctl restart httpd <br />
+        systemctl enable httpd <br />
+        links server0.example.com // text based browser <br />
+        yum install elinks // to install links<br />
+        <br />
+        Time sync with the server: <br />
+        classroom.example.com // server<br />
+        We have to install the packages for time sync. <br />
+        yum install chronyc<br />
+        yum install chrony <br />
+        <br />
+        It's already installed. <br />
+        NTP : Network time protocol. <br />
+        #vim /etc/chrony.conf<br />
+        open and # all lines in use public servers pool&nbsp; and type : <br />
+        server classroom.example.com iburst<br />
+        // iburst is used for quick sync of the data.<br />
+        #systemctl restart chronyd.service <br />
+        #systemctl enable chronyd <br />
+        #chronyc sources -v <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        </p>
+        </code>
+      </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+  <div id ="index_4" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Heading</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a class="w3-button w3-black" href="#">1</a>
+      <a class="w3-button w3-hover-black" href="#">2</a>
+      <a class="w3-button w3-hover-black" href="#">3</a>
+      <a class="w3-button w3-hover-black" href="#">4</a>
+      <a class="w3-button w3-hover-black" href="#">5</a>
+      <a class="w3-button w3-hover-black" href="#">»</a>
+    </div>
+  </div>
+
+
+
+
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <h4>BT</h4>
+
+      <i class="fa fa-facebook-f" style="font-size:24px"></i>
+    </div>
+
+    <div class="w3-container w3-theme-l1">
+      <p style="font-family:monospace">Powered by <a href="#" target="_blank">Blacktutorials</a></p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+<script src ="myscript.js">
+</script>
+
+
+
+</body>
+
+
+
+
+</html>
