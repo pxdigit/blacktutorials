@@ -68,6 +68,17 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   <a class="w3-bar-item w3-button w3-hover-black" href="#1_linux">Network File System</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#2_linux">Initial setup and NTP</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#3_linux">LDAP</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#4_linux">Process management</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#5_linux">Process management 2</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#6_linux">Defragmentation, resize2fs</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#7_linux">LVM</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#8_linux">Using editors : vim</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#9_linux">Partitions</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#10_linux">General services and protocols</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#11_linux">Files and directories listing</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#12_linux">Basic commands in linux and groups</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#13_linux">File System and permissions</a>
+
 </nav>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -392,17 +403,818 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     </div>
   </div>
 
-  <div id ="index_4" class="w3-row w3-padding-64">
+  <div id ="4_linux" class="w3-row w3-padding-64">
     <div class="w3-twothird w3-container">
-      <h1 class="w3-text-teal">Heading</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <h1 class="w3-text-teal">Process management</h1>
+      <p>
+        App > system tool > system monitor<br/>
+#ps<br/>
+#tty  // print the file name of the terminal<br/>
+ctrl+shift+t > to open the terminal<br/>
+ctrl+shift+d > close opened terminal<br/>
+ls /dev/pts > no of terminals opened<br/>
+ll /dev/pts<br/>
+All terminals are called character files . .<br/>
+<br/>
+Console :<br/>
+seven virtual consoles.<br/>
+alt + ctrl + {f1...f7}<br/>
+alt +ctrl +f1 // it is the graphical console<br/>
+ps -a // which terminal which command<br/>
+ps -au // will display all the users too.<br/>
+ps -aux // not running in the terminal but outside, a - for all the terminals, u for the users and x for not in terminal.<br/>
+top      ps -u<br/>
+VIRT = VSZ<br/>
+<br/>
+Process can be killed in two ways :<br/>
+By name and by pid.<br/>
+pkill ping // this will kill all the ping.<br/>
+Killing can be done particularly with the process id.<br/>
+<br/>
+pgrep ping // shows the process id .<br/>
+#ps -au | grep ping<br/>
+<br/>
+kill -15 11822<br/>
+ process id<br/>
+-15 // is also called terminal<br/>
+<br/>
+kill -9 11822 // -9 is for killing all processes.<br/>
+kill -l // It will display all the killing signals.<br/>
+<br/>
+ctrl + c // for process signal killing -15<br/>
+ctrl + z // for stopping and creating zombies<br/>
+exit<br/>
+<br/>
+<br/>
+#jobs command is used to view the jobs running in the terminal.<br/>
+#fg %n // It is used for bringing the background jobs to the foreground, where n is the job number.<br/>
+<br/>
+#ping 127.0.0.1<br/>
+<br/>
+<br/>
+#nice // running any process by any specific nice value.<br/>
+#nice -4 firefox  // giving the nice value to 4<br/>
+#top | grep firefox<br/>
+#nice --4 firefox // giving the nice value to -4<br/>
+#nice firefox // 10 default<br/>
+#renice<br/>
+<br/>
+#pgrep firefox<br/>
+#renice -n 17 13101 // while not stopping the process, renice is used.<br/>
+#renice -n -20 13101 // for giving -20 as the nice value.<br/>
+      </p>
     </div>
     <div class="w3-third w3-container">
       <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
       <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
     </div>
   </div>
+
+
+
+  <div id ="5_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Process management 2</h1>
+      <p>
+        Process management :<br/>
+        If priority is high, Memory and cpu utilization is more towards that process.<br/>
+        Low nice value means high priority.<br/>
+        Nice value range :<br/>
+        -20 to 19<br/>
+<br/>
+        Process can view in two ways :<br/>
+        static and dynamic views.<br/>
+        static - ps command<br/>
+        dynamic - top command<br/>
+<br/>
+<br/>
+        #top<br/>
+        Default value for delay is 3 second<br/>
+        we can change it by command #d<br/>
+        PR NI<br/>
+        20 0<br/>
+        27 7<br/>
+        4 -16<br/>
+        38 18<br/>
+        38 18<br/>
+        14 -6<br/>
+<br/>
+        PR - NI = 20<br/>
+<br/>
+         PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND<br/>
+<br/>
+        PID is called the process id.<br/>
+        VIRD - virtual memory<br/>
+        RES - residential state memory<br/>
+        SHR - share memory<br/>
+        S - status // In this s and r are called sleeping and running.<br/>
+<br/>
+<br/>
+        Next is<br/>
+        #ps<br/>
+        #ps -a<br/>
+        #ps -au <br/>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+
+
+  <div id ="6_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Defragmentation, resize2fs</h1>
+      <p>
+        13. Create one logical volume named database and it should be on datastore volume group with size 50 extent(ext4).<br/>
+<br/>
+       (i) the datastore volume group extend should be 16MiB. (ii)mount the logical volume under mount point /mnt/database.<br/>
+<br/>
+       pvcreate /dev/vdb7<br/>
+       vgcreate -s 16 datastore /dev/vdb7<br/>
+       lvcreate -l -50 -n /dev/datastore/database<br/>
+       mkfs.ext4 /dev/datastore/database<br/>
+<br/>
+       17. The initial size of that logical volume database is 800MB. Make successfully reduce the size of logical volume 500MB without losing any data.<br/>
+<br/>
+       lvdisplay<br/>
+       LV size 800.00 MB    // decrease to 500.00<br/>
+       Current LE 50<br/>
+<br/>
+       // In ext4 size can be increased or decreased but not in xfs.<br/>
+<br/>
+       U Umount<br/>
+       E e2fsck  //extend to file system check     // defragmentation<br/>
+       R resize2fs // resize to file system<br/>
+       L lvreduce                       <br/>
+                            // Mounted file system can not be decreased.<br/>
+<br/>
+<br/>
+       e2fsk -f /dev/datastore/database<br/>
+       resize2fs /dev/datastore/database 500M<br/>
+       lvreduce  -L 500M /dev/datastore/database<br/>
+<br/>
+       Compression and Decompression :<br/>
+       ------------------> Using gzip<br/>
+<br/>
+       dd if=/dev/zero of=/root/Desktop/file bs=100M count=15<br/>
+<br/>
+       if > input file<br/>
+       of > output file<br/>
+       bs > block size<br/>
+       dd if=/dev/zero of=/swapfile bs=100M count=20<br/>
+       ls -lh // listing in the GB format<br/>
+       mkswap /swapfile<br/>
+       swapon /swapfile<br/>
+       chmod 600 /swapfile<br/>
+       free -m <br/>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+
+
+
+  <div id ="7_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">LVM</h1>
+      <p>
+        Compressions decompressions and tar and LVM<br/>
+<br/>
+<br/>
+        pvcreate dev/vdb8 dev/vdb9<br/>
+        vgs<br/>
+        pvs<br/>
+        vgcreate vg1 /dev/vdb8 /dev/vdb9<br/>
+        pvs<br/>
+        vgs<br/>
+        vgdisplay vg1<br/>
+         // output<br/>
+          vg size 1.48 GB<br/>
+          pe size 4.00 MB<br/>
+          Total PE 379<br/>
+          Alloc PE / size 0/0<br/>
+          Free PE /size 379 / 1.48 GB<br/>
+        lvcreate -L 200M -n /dev/vg1/lv1<br/>
+        lvcreate -l 50 -n /dev/vg1/lv2<br/>
+          // '-l' is used for Current LE or packet while' -L' is used for LV size.<br/>
+        mount /dev/vg1/lv1 /lvdata/<br/>
+           // temporary mount<br/>
+        vim /etc/fstab  // for permanent entry<br/>
+           // fstab - file system table<br/>
+<br/>
+<br/>
+        vim /etc/fstab<br/>
+        // /dev/vg1/lv1 /lv1data xfs defaults 0 0<br/>
+         /dev/vg1/lv2 /lv2data ext4 defaults 0 0<br/>
+        mount -a   // mount now<br/>
+<br/>
+        How to remove ?<br/>
+        First unmount everything.<br/>
+        df -h<br/>
+        1) umount everything.<br/>
+         // we can umount using that is unmount from the device name or the mounting point directly.<br/>
+        2) Delete from vim /etc/fstab using 'dd' easily.<br/>
+        3) Now check #lvs<br/>
+        #lvremove /dev/vg1/lv1<br/>
+        #pvs<br/>
+        #pvremove /dev/vdb8<br/>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+
+
+
+  <div id ="8_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Using editors : vim</h1>
+      <p>
+        nano, gedit, vim, sed, vi<br/>
+        vi - visual editors<br/>
+        First editor, using older versions of linux<br/>
+        sed - streamline editor.<br/>
+<br/>
+        Vim editor has three modes:<br/>
+        1) command mode<br/>
+        Below we can see file name. Command mode is also called escape mode.<br/>
+<br/>
+        2) Insert<br/>
+        i, o, shift + o<br/>
+        3) Execute<br/>
+        starts with ':'<br/>
+<br/>
+        Command mode command : vim editor<br/>
+        1) yy > copy<br/>
+        yy one line copy(yank)<br/>
+        2yy two lines copy<br/>
+        'p' for paste below the cursor<br/>
+<br/>
+        'cc' > It's for cut.<br/>
+        n'cc' > n number of copy.<br/>
+        After n'cc', it will go in the insert mode, do esc then paste 'p'.<br/>
+<br/>
+        n'dd' > delete, n is the number of times.<br/>
+        'ctrrl+r'  > redo<br/>
+        'u' > undo<br/>
+        'shift+g' > ground,i.e go to last line of the file.<br/>
+        'gg' > cursor going to first line<br/>
+        'shift+o' > above line the cursor point.<br/>
+        'o' > writing below  the cursor point that is the next line.<br/>
+<br/>
+    <br/>               |
+        <-H J K L-><br/>
+                |<br/>
+         <br/>
+<br/>
+        To exit<br/>
+        'esc +:wq<br/>
+<br/>
+        'set:nu' > setting number<br/>
+        :10 > going to 10th line<br/>
+        :set nonu > deleting numbers<br/>
+        'apple' > highlighting and finding keyword apple.<br/>
+        ':nohl' > no highlighting<br/>
+        ':%s/rakesh/rajesh' > search and replace<br/>
+        '%s/rakesh/rajesh/g' > search and replace globally<br/>
+        ':vsplit' > opening another file within it.<br/>
+        'i' > insert<br/>
+        'ctrl + ww' > navigating to other file withing the same opened file.<br/>
+        ':split' > It's for horizontal split.<br/>
+        ':wqa' > saving and closing all files.<br/>
+        ':q' > force quitting without saving.<br/>
+<br/>
+        // opening the pdf file from the terminal '#evince file.pdf'<br/>
+<br/>
+        Soft links and hard links :<br/>
+        Soft link is shortcut.<br/>
+        1.SOftlink is used for folder and file while other is used for file.<br/>
+        2.Original deleted then link file won't work in soft link while in other it will.<br/>
+        3.Soft link is created in any partition. While in hardlink same device it can be created.<br/>
+        4.Different i node no in soft link / Same i node no in hardlink.<br/>
+        5.Absolute path is needed in soft link while not in other.<br/>
+<br/>
+        Creating soft link.<br/>
+        #ln -s /root/Desktop/dir /mnt   // ln is the link , -s is for the soft link.<br/>
+<br/>
+        find / -inum 41943191 // It will show all the files copied in different places.<br/>
+        ls -li file // Shows the inode number for the file.<br/>
+        ls -ldi 123 // for the folder.<br/>
+        #ls -l myfile // we can also see the duplicates or the link counts.<br/>
+        #find / -name myfile    // this will display the locations of the file having duplicates.<br/>
+        #ls -li myfile<br/>
+<br/>
+        Softlinks have full permissions. <br/>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+
+
+
+
+  <div id ="9_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Partitions</h1>
+      <p>
+        14. To create a new user with UID 1326 and user name as alies.<br/>
+<br/>
+        useradd -u 1326 alies // for setting user id to 1326 to the user.<br/>
+        id alies<br/>
+        usermod -u 1327 alies // modifying the user id 1327<br/>
+        groupmod -u 1327 alies // modifying the group id.<br/>
+        tail -1 /etc/passwd // displaying first line from last.<br/>
+        root/etc/passwd >> root/search.txt // '>>' is used for redirection and append.<br/>
+<br/>
+        Partition : two types<br/>
+        MBR :<br/>
+        Master boot record<br/>
+        GPT :<br/>
+        GUID - Global unique id partition tables.<br/>
+<br/>
+        1) In MBR, we can create 4 primary partitions only. After that we can not create.<br/>
+        2) Create 3 primary partitions.<br/>
+        3) Left balance size - make as an extended partition.<br/>
+        Inside extended partition create logical drive. So extended partition is collection of logical drive.<br/>
+        100<br/>
+        1-10, 11-20, 21-30, 31-100 is extended and logical can be created from this.<br/>
+<br/>
+        In red hat 6.0 maximum 15 partitions can be created.<br/>
+        3 primary sda1, sda2, sda3<br/>
+        1 extended sda4<br/>
+        11 logical sda5, sda5 ....sda15.<br/>
+<br/>
+        In redhat 6.3 we can create 64 partitions.<br/>
+        3 primary and the rest is extended<br/>
+<br/>
+        In GPT :<br/>
+        We can create 128 partitions.<br/>
+<br/>
+        Q) Create 500 mb physical partition and mount it on /common location.<br/>
+        'fdidk' fixed disk command is used for creating partition.<br/>
+<br/>
+<br/>
+        commands<br/>
+        #fdisk /dev/vdb<br/>
+<br/>
+        	:m(help)<br/>
+        	:p(print)  // print partition table information.<br/>
+        	:n(new)	<br/>
+        p(primary) enter<br/>
+        partition number: enter<br/>
+        first sector: enter<br/>
+        last sector: +500M<br/>
+        	:p  //print<br/>
+<br/>
+        If we create any partition, Linux default partition id is '83'.<br/>
+        	:w // write and output<br/>
+<br/>
+        #partprobe /dev/vdb // It is used for informing the os(kernel) about the partition.<br/>
+        #blkid<br/>
+        #mkfs.xfs /dev/vdb1<br/>
+        #blkid<br/>
+        UUID<br/>
+        #mkfs.xfs -f /dev/vdb1<br/>
+<br/>
+        Use of the partition :<br/>
+        Without formatting we can not mount it, since there isn't a block id.<br/>
+        How to mount :<br/>
+        #mount /dev/vdb1 /mnt // this is temporary mount.<br/>
+        #vim /etc/fstab<br/>
+        vim /etc  (press i)<br/>
+        /dev/vdb1   /common    xfs  defaults  0 0<br/>
+        device name  mount point file system type option dump fsck-file system check (no check)<br/>
+<br/>
+<br/>
+        	:t(type) // we should change 83 to 82 as we are creating swap partition.<br/>
+        // 82 is the hexa code<br/>
+        	:l (list)<br/>
+        df -h<br/>
+<br/>
+<br/>
+<br/>
+        mkswap /dev/vdb2<br/>
+        free -m<br/>
+        swapon /dev/vdb2<br/>
+        swapoff /dev/vdb2<br/>
+<br/>
+        1) 1 GB partition and mount at /hello<br/>
+        2) 2 GB - > /hi<br/>
+        3) 1024 MB -> swap<br/>
+        4) 3 GB -> /data<br/>
+<br/>
+        LVM - Logical volume manager.<br/>
+        1)Create physical volume.<br/>
+        #pvs<br/>
+        #pvdisplay<br/>
+        #pvcreate /dev/vdb6<br/>
+        #pvdisplay /dev/vdb6<br/>
+<br/>
+        2) Create a volume group and add the physical volume to the group.<br/>
+        vgs<br/>
+        vgdisplay // checking<br/>
+        #vgcreate myshop /dev/vdb6<br/>
+        #pvs<br/>
+        #pvdisplay<br/>
+         // output<br/>
+        	// PE size 4.00 MB<br/>
+        	// Total 24<br/>
+        	// Physical extend (PE)<br/>
+        #vgs<br/>
+        #vgdisplay myshop<br/>
+        #lvs<br/>
+        #lvdisplay<br/>
+        #lvcreate -L 2M -n /dev/myshop/anju<br/>
+        #lvcreate -L 5M -n /dev/myshop/anish<br/>
+        #lvcreate -l 4 -n /dev/myshop/lava<br/>
+        #lvs<br/>
+        #lvcreate -l 9 -n /dev/myshop/ari<br/>
+<br/>
+<br/>
+        // then use mkfs.xfs to format each of  the partitions.<br/>
+        QUES)<br/>
+        // VG name is datastore<br/>
+        // LV name is database<br/>
+        // PE is 16 MB<br/>
+        // LE is 50 MB<br/>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+
+  <div id ="10_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">General services and protocols</h1>
+      <p>
+        Genetral services :<br/>
+        scp, rsync, ssh, ssh -> login without password<br/>
+        scp -> secure copy //used for remote copying<br/>
+        protocol - 22 port no<br/>
+<br/>
+        Command for sending the file or folder :<br/>
+        #scp file 172.25.0.10:/root/Desktop // For sending the file to another machine in the network and giving the others password.<br/>
+        It will ask yes or no<br/>
+        to send folder :<br/>
+        scp -r  dir 172.25.0.10:/root/Desktop<br/>
+<br/>
+        rsync : Remote sync<br/>
+        It is used for regular / incremental backup of any directory.<br/>
+        It can be used in local as well as remote machine.<br/>
+        It has delta algorithm.<br/>
+        #man rsync<br/>
+<br/>
+        ssh : It is used for secure //shell login:Secure shell<br/>
+        port no is 22<br/>
+<br/>
+        #ssh  root@172.25.0.20<br/>
+<br/>
+        nautilus ~<br/>
+        natilus is the file manager for linux or file browsers, for opening the file and folder.<br/>
+<br/>
+        natilus<br/>
+        just 'natilus' will open the home directory.<br/>
+<br/>
+        ssh login without password : Remote machines<br/>
+        first login via ssh<br/>
+        #ssh-keygen<br/>
+<br/>
+        enter<br/>
+        enter<br/>
+        public key is saved in /root/ssh/id_rsa.pub<br/>
+<br/>
+        It will generate the public key in the above directory<br/>
+        #ssh-copy-id -i /root/ssh/id_rsa.pub root@172.25.0.10<br/>
+<br/>
+        It is sending the public key in the remote location.<br/>
+<br/>
+        #cat  /root/.ssh/authorized_keys<br/>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+
+  <div id ="11_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Files and directories listing</h1>
+      <p>
+        Create a directory using relative and absolute path.<br/>
+        mkdir hello  //relative path depends on the present directory.<br/>
+        mkdir hello  /root/Desktop  // absolute path, It starts from the current location.<br/>
+<br/>
+        Create a directory at /temp location using absolute and relative path.<br/>
+        mkdir /tmp/mydir   // absolute path<br/>
+        mkdir ../../tmp/mydir1   //If the current location is desktop. It will navigate back to two directories.<br/>
+<br/>
+        Create a file inside /opt/file100.<br/>
+        {Inside /mnt given}<br/>
+        copy the file to the desktop.<br/>
+<br/>
+<br/>
+        User and group :<br/>
+        Database file of user and group information.<br/>
+        1) /etc/passwd > 7 field > user database information.<br/>
+        2) /etc/root  > 4 field > group database information.<br/>
+        3) /etc/shadow > 8 field or 9 field, 1 field is not used. This is called password database of user. Password ageing information.<br/>
+        4) /etc/gshadow > 4 field  > Group password database of group.<br/>
+        5) /var/spool/mail/rakesh > Mail file of rakesh.<br/>
+        6) /home/rakesh > home directory of user rakesh.<br/>
+<br/>
+        #head /etc/passwd // for showing starting 10 lines<br/>
+        #head -2 /etc/passwd  // for showing starting 2 files<br/>
+        root:x:0:0:root:/root:/bin/bash<br/>
+        bin:x:1:1:bin:/bin:/sbin/nologin<br/>
+<br/>
+        similarly,<br/>
+        tail -1 /etc/passwd<br/>
+        rakesh:x:100:1000::/home/rakesh:bin/bash<br/>
+        username:password authentication field:uid:gid:comment:home directory:login shell<br/>
+<br/>
+        GECOS > General electronics comprehensive operating system.<br/>
+<br/>
+        How to comment on user?<br/>
+        usermod -c > It is used for commenting on the users.<br/>
+        usermod -c linuxfaculty rakesh<br/>
+<br/>
+        For displaying the shells in the terminal:<br/>
+        chsh -l<br/>
+<br/>
+        For echoing the shell being used:<br/>
+        echo $SHELL<br/>
+<br/>
+        grep rakesh /etc/passwd > To search rakesh in the given directory.<br/>
+<br/>
+        How to change shell?<br/>
+        usermod -s /bin/csh rakesh    // -s is used for changing shell.<br/>
+<br/>
+        usermod -s /bin/nologin   //output is > this account is currently not available.<br/>
+<br/>
+<br/>
+        Group field :<br/>
+        head -2 /etc/group<br/>
+        root:x:o:   //output<br/>
+        bin:x:1:<br/>
+        tail -2 /etc/group<br/>
+        slocate:x:21:<br/>
+        rakesh:x:1000:<br/>
+        groupname:group password:gid:group member<br/>
+<br/>
+        Adding users to group:<br/>
+        usermod -G linux rakesh<br/>
+        usermod -G linux u1<br/>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+
+  <div id ="12_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Basic commands in linux and groups</h1>
+      <p>
+        Creating directories :<br/>
+        // commands<br/>
+        mkdir 1 2 3 4<br/>
+        mkdir /mnt/1 /opt/<br/>
+        ls /mnt /opt/<br/>
+        mkdir /opt/lion{1..10}<br/>
+<br/>
+        cat > hello<br/>
+        cat hello<br/>
+        cat hello > hi // this copies and pastes to the other.<br/>
+        cat >> hello<br/>
+        It's for appending the file.<br/>
+<br/>
+        How to rename and move the files :<br/>
+        mkdir 1 2 3 4 5<br/>
+        mv 1 2<br/>
+        mv 5 7<br/>
+        // If you want to rename 1 to .1 simply type 'mv 1 .1'<br/>
+<br/>
+        Creating hidden files and folders :<br/>
+        mv rakesh .rakesh // to make rakesh hidden and vice versa<br/>
+        ls<br/>
+        ls -a // to view hidden files as well<br/>
+<br/>
+        cat hello hi // for displaying what is there in it.<br/>
+        cat hello hi > /media/tiger  // copying to that particular directory.<br/>
+<br/>
+<br/>
+        Permissions<br/>
+        We know about the primary permissions<br/>
+        r w x<br/>
+        4 2 1<br/>
+        chmod 000 777<br/>
+        chmod ugo = rwx<br/>
+<br/>
+<br/>
+<br/>
+        setfacl -m u:rakesh:rwx /permission/ //assign the permission<br/>
+        setfacl -x g:linux /permission/   // to remove the permission<br/>
+<br/>
+<br/>
+        setfacl -m u:rakesh:- /permission // this will remove the permissions.<br/>
+<br/>
+        Assigning mask permission :<br/>
+        setfacl -m m:r-x /permission<br/>
+<br/>
+        setfacl -b /permission // reverting to the primary permissions.<br/>
+<br/>
+        useradd u1<br/>
+        useradd u2<br/>
+        groupadd g1<br/>
+        groupadd g2<br/>
+        mkdir /myper<br/>
+        chmod 770 /myper<br/>
+<br/>
+<br/>
+        User and group administration by graphically :<br/>
+        #yum install system-config-users<br/>
+        App > sundry > user and groups<br/>
+        or directly using the command<br/>
+        #system-config-users<br/>
+<br/>
+        Root has user id and group id as '0'.<br/>
+<br/>
+        For RHEL 7<br/>
+        root > 0<br/>
+        bin > 1<br/>
+        deamon > 2<br/>
+<br/>
+<br/>
+<br/>
+        			// Application and system	<br/>
+        till<br/>
+<br/>
+         > 999<br/>
+        then it will start from 1000<br/>
+<br/>
+        while in RHEL 6 it starts from '500'.<br/>
+<br/>
+        Primary group is automatically created with that if the user.<br/>
+<br/>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+
+  <div id ="13_linux" class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">File System and permissions</h1>
+      <p>
+        http://rhcert.domain70.example.com/pub/rhel/Server<br/>
+<br/>
+        /bin :<br/>
+        It is called binary executable file.<br/>
+        Inside bin all commands are general-<br/>
+        like mkdir, touch etc.<br/>
+<br/>
+        /sbin :<br/>
+        Only root can use this.<br/>
+        Like partition. Format the partition.<br/>
+<br/>
+        /boot :<br/>
+        It is called booting files.<br/>
+        Starting location of the operating system.<br/>
+        /boot/grub2/grub.cfg<br/>
+        Configuration file is stored in this to start the os.<br/>
+<br/>
+        /dev<br/>
+        /dev/sdb<br/>
+        /dev/sdb1<br/>
+<br/>
+<br/>
+        /etc : System configuration files.<br/>
+<br/>
+        /home : User's home directory<br/>
+        i.e respective user.<br/>
+<br/>
+        /root<br/>
+        root user home directory<br/>
+<br/>
+        lib<br/>
+<br/>
+<br/>
+        /media :<br/>
+        Automatically mount point<br/>
+        /media/sandisk<br/>
+        run/media/name rakesh<br/>
+<br/>
+        /mnt : Administrative mount point<br/>
+        #mount /dev/sdb1<br/>
+<br/>
+        /opt : Optional packages.<br/>
+<br/>
+        /proc : Any process running.<br/>
+<br/>
+        /var : variable services.<br/>
+<br/>
+        /srv : It's a blank folder. It is used in replacement for /var.<br/>
+<br/>
+        /sys : System information. like  Hypervisor<br/>
+<br/>
+<br/>
+        Permissions :<br/>
+        r w x<br/>
+        read write and execution<br/>
+        Commands that have these permissions:<br/>
+        r (read):<br/>
+        ls<br/>
+<br/>
+        w (write):<br/>
+        mkdir, touch<br/>
+<br/>
+        x (execute):<br/>
+        cd<br/>
+<br/>
+        Folders should  have x(execution) permission for navigation by default.<br/>
+        Files shouldn't have x(execution) permissions by default.<br/>
+<br/>
+        There are two types of permissions:<br/>
+        Primary and Secondary :<br/>
+        Primary can be assigned by 'chmod'<br/>
+        while Secondary can be assigned by 'setfacl'<br/>
+        (set file access control list) : setfacl<br/>
+        (change modifications) : chmod<br/>
+        # ls -ld dir<br/>
+        # ls -l file<br/>
+        # ls -l  // this will display all files and folders<br/>
+        # ls -l /mnt<br/>
+        color of the link file is cyan<br/>
+<br/>
+        Primary permissions can be assigned by two methods.<br/>
+        1) Symbolic method<br/>
+        2) Numeric method<br/>
+        Symbolic method :<br/>
+        u, g, o, r, w, x, +, -, =, a<br/>
+        Numeric method :<br/>
+        from (0-7).<br/>
+<br/>
+        # ls -l<br/>
+        drwxr-xr-x 2 root root<br/>
+        -rw-r--r-- 1<br/>
+        Total there are 10 fields.<br/>
+        u g o (access)<br/>
+        user group and others.<br/>
+<br/>
+        By default group permission is also r and x.<br/>
+        2 is the link count.<br/>
+<br/>
+        drwxr-xr-x. 3 kiosk kiosk   14 Feb 10 00:31 dir<br/>
+        r > 4<br/>
+        w > 2<br/>
+        x > 1<br/>
+        are the numeric notations for r, w, x.<br/>
+<br/>
+        When root is creating the user.<br/>
+        dir : 755<br/>
+        other way file : rwxr-xr-x<br/>
+        file : 644<br/>
+        other way file : rw-r--r--<br/>
+<br/>
+        general user :<br/>
+        dir : 775<br/>
+        file : 664<br/>
+<br/>
+        In dir w permission is added.<br/>
+        In file w permission is added<br/>
+      </p>
+    </div>
+    <div class="w3-third w3-container">
+      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    </div>
+  </div>
+
+
 
   <!-- Pagination -->
   <div class="w3-center w3-padding-32">
